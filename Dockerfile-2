@@ -1,0 +1,15 @@
+## image of centos
+FROM centos
+## port exposed
+EXPOSE 80
+## install http server
+RUN yum update -y && yum install httpd -y
+
+##change the working dir
+WORKDIR /var/www/html
+
+## copy the index file
+COPY index.html index.html
+# start the httpd service
+
+ENTRYPOINT ["/usr/sbin/httpd", "-D", "FOREGROUND"]
